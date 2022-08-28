@@ -1,0 +1,22 @@
+type Truck
+  @model
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["Admins"]
+        operations: [create, update, read, delete]
+      }
+      { allow: groups, groups: ["Buyers"], operations: [read] }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  lotId: ID!
+  name: String!
+  description: String
+  chassisNumber: Int
+  sold: Boolean!
+  price: Int!
+  buyer: String!
+}

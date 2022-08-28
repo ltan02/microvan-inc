@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "microvaninc",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authmicrovaninc87a9b916",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

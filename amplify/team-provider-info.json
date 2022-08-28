@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-microvaninc-dev-122340-authRole",
+      "UnauthRoleArn": "arn:aws:iam::578474506089:role/amplify-microvaninc-dev-122340-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::578474506089:role/amplify-microvaninc-dev-122340-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-microvaninc-dev-122340-deployment",
+      "UnauthRoleName": "amplify-microvaninc-dev-122340-unauthRole",
+      "StackName": "amplify-microvaninc-dev-122340",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:578474506089:stack/amplify-microvaninc-dev-122340/c3761630-263d-11ed-b549-0206628e9718",
+      "AmplifyAppId": "difzxurenfdrp"
+    },
+    "categories": {
+      "auth": {
+        "microvaninc87a9b916": {}
+      }
+    }
+  }
+}
