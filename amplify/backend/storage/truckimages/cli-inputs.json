@@ -1,0 +1,14 @@
+{
+  "resourceName": "truckimages",
+  "policyUUID": "792e93b6",
+  "bucketName": "microvanincf527ffa57d2942758fadeeea30cd2c60",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
