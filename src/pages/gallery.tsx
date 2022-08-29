@@ -2,7 +2,10 @@ import { API } from "aws-amplify";
 import { useEffect, useState } from "react";
 import { useUser } from "../context/AuthContext";
 import { listTrucks } from "../graphql/queries";
-import { Truck } from "../API";
+import { ListTrucksQuery, Truck } from "../API";
+import Header from "../components/header";
+import FilterBar from "../components/filterBar";
+import GallerySection from "../components/gallerySection";
 
 type Props = {};
 
@@ -14,13 +17,13 @@ export default function gallery({}: Props) {
   useEffect(() => {
     const fetchTrucksFromApi = async (): Promise<Truck[]> => {
       const allTrucks = (await API.graphql({ query: listTrucks })) as {
-        data: Truck[];
+        data: ListTrucksQuery;
         errors: any[];
       };
 
       if (allTrucks.data) {
-        setTrucks(allTrucks.data);
-        return allTrucks.data;
+        setTrucks(allTrucks.data.listTrucks?.items as Truck[]);
+        return allTrucks.data.listTrucks?.items as Truck[];
       } else {
         throw new Error("Could not get trucks");
       }
@@ -32,5 +35,18 @@ export default function gallery({}: Props) {
   console.log("USERS:", user);
   console.log("TRUCKS:", trucks);
 
-  return <div>Hello World!</div>;
+  return (
+    <div className="flex flex-col bg-white min-h-full">
+      <Header />
+
+      <main className="flex flex-col grow shrink basis-0">
+        <div className="flex w-screen flex-col mt-0 h-full">
+          <div className="px-[32px] mx-auto w-screen">
+            <FilterBar />
+            <GallerySection trucks={trucks} />
+          </div>
+        </div>
+      </main>
+    </div>
+  );
 }

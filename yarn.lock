@@ -3182,7 +3182,14 @@
   "resolved" "https://registry.npmjs.org/@mui/core-downloads-tracker/-/core-downloads-tracker-5.10.2.tgz"
   "version" "5.10.2"
 
-"@mui/material@^5.10.2":
+"@mui/icons-material@^5.10.2":
+  "integrity" "sha512-p7ku+43JeKRz0ONGzPZbRXZRbE7vCKP1Cr8l/Yj9sUIGVQ6CM/m37u6udacJZkDXD+G2FoxJPixrVvvjx6f64w=="
+  "resolved" "https://registry.npmjs.org/@mui/icons-material/-/icons-material-5.10.2.tgz"
+  "version" "5.10.2"
+  dependencies:
+    "@babel/runtime" "^7.17.2"
+
+"@mui/material@^5.0.0", "@mui/material@^5.10.2":
   "integrity" "sha512-ay43fuQLXROXkxFd6tqbj394Hu8BlbmpCdEDFtAisijulla2ZLfQa24pjhdX+56HrHReB3cZsf/sRq+DSfIgiA=="
   "resolved" "https://registry.npmjs.org/@mui/material/-/material-5.10.2.tgz"
   "version" "5.10.2"
@@ -7184,7 +7191,7 @@
   "resolved" "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   "version" "1.0.0"
 
-"tailwindcss@^3.1.2":
+"tailwindcss@^3.1.8":
   "integrity" "sha512-YSneUCZSFDYMwk+TGq8qYFdCA3yfBRdBlS7txSq0LUmzyeqRe3a8fBQzbz9M3WS/iFT4BNf/nmw9mEzrnSaC0g=="
   "resolved" "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.1.8.tgz"
   "version" "3.1.8"
