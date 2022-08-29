@@ -5,14 +5,15 @@
 export const getTruck = /* GraphQL */ `
   query GetTruck($id: ID!) {
     getTruck(id: $id) {
-      lotId
-      name
-      description
-      chassisNumber
-      sold
-      price
-      buyer
       id
+      name
+      chassisNumber
+      lotId
+      images
+      description
+      startingPrice
+      categories
+      sold
       createdAt
       updatedAt
     }
@@ -20,20 +21,94 @@ export const getTruck = /* GraphQL */ `
 `;
 export const listTrucks = /* GraphQL */ `
   query ListTrucks(
+    $id: ID
     $filter: ModelTruckFilterInput
     $limit: Int
     $nextToken: String
+    $sortDirection: ModelSortDirection
   ) {
-    listTrucks(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listTrucks(
+      id: $id
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
       items {
-        lotId
-        name
-        description
-        chassisNumber
-        sold
-        price
-        buyer
         id
+        name
+        chassisNumber
+        lotId
+        images
+        description
+        startingPrice
+        categories
+        sold
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getBid = /* GraphQL */ `
+  query GetBid($id: ID!) {
+    getBid(id: $id) {
+      id
+      truckId
+      truck {
+        id
+        name
+        chassisNumber
+        lotId
+        images
+        description
+        startingPrice
+        categories
+        sold
+        createdAt
+        updatedAt
+      }
+      currentPrice
+      bidder
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listBids = /* GraphQL */ `
+  query ListBids(
+    $id: ID
+    $filter: ModelBidFilterInput
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+  ) {
+    listBids(
+      id: $id
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
+      items {
+        id
+        truckId
+        truck {
+          id
+          name
+          chassisNumber
+          lotId
+          images
+          description
+          startingPrice
+          categories
+          sold
+          createdAt
+          updatedAt
+        }
+        currentPrice
+        bidder
         createdAt
         updatedAt
       }

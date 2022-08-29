@@ -8,14 +8,15 @@ export const createTruck = /* GraphQL */ `
     $condition: ModelTruckConditionInput
   ) {
     createTruck(input: $input, condition: $condition) {
-      lotId
-      name
-      description
-      chassisNumber
-      sold
-      price
-      buyer
       id
+      name
+      chassisNumber
+      lotId
+      images
+      description
+      startingPrice
+      categories
+      sold
       createdAt
       updatedAt
     }
@@ -27,14 +28,15 @@ export const updateTruck = /* GraphQL */ `
     $condition: ModelTruckConditionInput
   ) {
     updateTruck(input: $input, condition: $condition) {
-      lotId
-      name
-      description
-      chassisNumber
-      sold
-      price
-      buyer
       id
+      name
+      chassisNumber
+      lotId
+      images
+      description
+      startingPrice
+      categories
+      sold
       createdAt
       updatedAt
     }
@@ -46,14 +48,99 @@ export const deleteTruck = /* GraphQL */ `
     $condition: ModelTruckConditionInput
   ) {
     deleteTruck(input: $input, condition: $condition) {
-      lotId
-      name
-      description
-      chassisNumber
-      sold
-      price
-      buyer
       id
+      name
+      chassisNumber
+      lotId
+      images
+      description
+      startingPrice
+      categories
+      sold
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createBid = /* GraphQL */ `
+  mutation CreateBid(
+    $input: CreateBidInput!
+    $condition: ModelBidConditionInput
+  ) {
+    createBid(input: $input, condition: $condition) {
+      id
+      truckId
+      truck {
+        id
+        name
+        chassisNumber
+        lotId
+        images
+        description
+        startingPrice
+        categories
+        sold
+        createdAt
+        updatedAt
+      }
+      currentPrice
+      bidder
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateBid = /* GraphQL */ `
+  mutation UpdateBid(
+    $input: UpdateBidInput!
+    $condition: ModelBidConditionInput
+  ) {
+    updateBid(input: $input, condition: $condition) {
+      id
+      truckId
+      truck {
+        id
+        name
+        chassisNumber
+        lotId
+        images
+        description
+        startingPrice
+        categories
+        sold
+        createdAt
+        updatedAt
+      }
+      currentPrice
+      bidder
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteBid = /* GraphQL */ `
+  mutation DeleteBid(
+    $input: DeleteBidInput!
+    $condition: ModelBidConditionInput
+  ) {
+    deleteBid(input: $input, condition: $condition) {
+      id
+      truckId
+      truck {
+        id
+        name
+        chassisNumber
+        lotId
+        images
+        description
+        startingPrice
+        categories
+        sold
+        createdAt
+        updatedAt
+      }
+      currentPrice
+      bidder
       createdAt
       updatedAt
     }

@@ -5,14 +5,15 @@
 export const onCreateTruck = /* GraphQL */ `
   subscription OnCreateTruck {
     onCreateTruck {
-      lotId
-      name
-      description
-      chassisNumber
-      sold
-      price
-      buyer
       id
+      name
+      chassisNumber
+      lotId
+      images
+      description
+      startingPrice
+      categories
+      sold
       createdAt
       updatedAt
     }
@@ -21,14 +22,15 @@ export const onCreateTruck = /* GraphQL */ `
 export const onUpdateTruck = /* GraphQL */ `
   subscription OnUpdateTruck {
     onUpdateTruck {
-      lotId
-      name
-      description
-      chassisNumber
-      sold
-      price
-      buyer
       id
+      name
+      chassisNumber
+      lotId
+      images
+      description
+      startingPrice
+      categories
+      sold
       createdAt
       updatedAt
     }
@@ -37,14 +39,90 @@ export const onUpdateTruck = /* GraphQL */ `
 export const onDeleteTruck = /* GraphQL */ `
   subscription OnDeleteTruck {
     onDeleteTruck {
-      lotId
-      name
-      description
-      chassisNumber
-      sold
-      price
-      buyer
       id
+      name
+      chassisNumber
+      lotId
+      images
+      description
+      startingPrice
+      categories
+      sold
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateBid = /* GraphQL */ `
+  subscription OnCreateBid {
+    onCreateBid {
+      id
+      truckId
+      truck {
+        id
+        name
+        chassisNumber
+        lotId
+        images
+        description
+        startingPrice
+        categories
+        sold
+        createdAt
+        updatedAt
+      }
+      currentPrice
+      bidder
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateBid = /* GraphQL */ `
+  subscription OnUpdateBid {
+    onUpdateBid {
+      id
+      truckId
+      truck {
+        id
+        name
+        chassisNumber
+        lotId
+        images
+        description
+        startingPrice
+        categories
+        sold
+        createdAt
+        updatedAt
+      }
+      currentPrice
+      bidder
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteBid = /* GraphQL */ `
+  subscription OnDeleteBid {
+    onDeleteBid {
+      id
+      truckId
+      truck {
+        id
+        name
+        chassisNumber
+        lotId
+        images
+        description
+        startingPrice
+        categories
+        sold
+        createdAt
+        updatedAt
+      }
+      currentPrice
+      bidder
       createdAt
       updatedAt
     }

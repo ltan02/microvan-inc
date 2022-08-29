@@ -54,7 +54,9 @@ function truckPreview({ truck }: Props) {
                       ₱
                     </div>
                     <div className="ml-[0.3em] w-full overflow-hidden whitespace-nowrap text-ellipsis">
-                      {truck.price}
+                      {
+                        truck.startingPrice /* TODO: Change this to the current bidding price? */
+                      }
                     </div>
                   </div>
                 </div>

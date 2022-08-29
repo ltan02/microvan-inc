@@ -1,22 +1,33 @@
+# Could add @key for different ways to filter through data
+
 type Truck
   @model
   @auth(
     rules: [
-      {
-        allow: groups
-        groups: ["Admins"]
-        operations: [create, update, read, delete]
-      }
+      { allow: groups, groups: ["Admins"] }
       { allow: groups, groups: ["Buyers"], operations: [read] }
-      { allow: private, operations: [read] }
       { allow: public, operations: [read] }
     ]
   ) {
-  lotId: ID!
+  id: ID! @primaryKey
   name: String!
-  description: String
-  chassisNumber: Int
-  sold: Boolean!
-  price: Int!
-  buyer: String!
+  chassisNumber: Int!
+  lotId: Int
+  images: [String] # Update to required when we have images
+  description: String!
+  startingPrice: Int!
+  categories: [String] # TODO: Check to see if this is required
+  sold: Boolean
+}
+
+type Bid
+  @model
+  @auth(
+    rules: [{ allow: private, operations: [create, update, read, delete] }]
+  ) {
+  id: ID! @primaryKey
+  truckId: ID!
+  truck: Truck @hasOne(fields: ["truckId"])
+  currentPrice: Int!
+  bidder: String!
 }
