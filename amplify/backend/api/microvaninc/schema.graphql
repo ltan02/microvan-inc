@@ -10,14 +10,26 @@ type Truck
     ]
   ) {
   id: ID! @primaryKey
-  name: String!
-  chassisNumber: Int!
-  lotId: Int
-  images: [String] # Update to required when we have images
+  unicode: Int!
+  model: String
+  prefix: String
+  chassis: String!
+  engineNumber: String!
   description: String!
+  brand: String!
+  type: String!
+  images: [String]
   startingPrice: Int!
-  categories: [String] # TODO: Check to see if this is required
-  sold: Boolean
+  sold: Boolean!
+  bidder: String!
+}
+
+type Brands @model {
+  brand: [String!]!
+}
+
+type Types @model {
+  type: [String!]!
 }
 
 type Bid

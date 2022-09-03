@@ -1,7 +1,6 @@
-import { ButtonBase, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import { Truck } from "../API";
 
 interface Props {
@@ -35,7 +34,7 @@ function truckPreview({ truck }: Props) {
               <div className="w-4/5">
                 <div className="flex">
                   <div className="font-semibold text-[12px] w-full overflow-hidden whitespace-nowrap text-ellipsis">
-                    {`#${truck.chassisNumber} ${truck.name}`}
+                    {`${truck.brand} - ${truck.type}`}
                   </div>
                 </div>
                 {truck.description && (

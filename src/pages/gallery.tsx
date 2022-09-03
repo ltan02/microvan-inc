@@ -12,21 +12,51 @@ type Props = {};
 export default function gallery({}: Props) {
   const { user } = useUser();
   const [trucks, setTrucks] = useState<Truck[]>([]);
-
+  const [nextToken, setNextToken] = useState<string | null | undefined>(null);
   // Make a request to the GraphQL API
   useEffect(() => {
     const fetchTrucksFromApi = async (): Promise<Truck[]> => {
-      const allTrucks = (await API.graphql({ query: listTrucks })) as {
+      const trucks: Truck[] = [];
+      let allTrucks = (await API.graphql({
+        query: listTrucks,
+        variables: { limit: 100 },
+      })) as {
         data: ListTrucksQuery;
         errors: any[];
       };
 
       if (allTrucks.data) {
-        setTrucks(allTrucks.data.listTrucks?.items as Truck[]);
-        return allTrucks.data.listTrucks?.items as Truck[];
+        console.log(JSON.stringify(allTrucks.data));
+        setNextToken(allTrucks.data.listTrucks?.nextToken);
+        console.log(allTrucks.data.listTrucks?.nextToken);
+        trucks.push(...(allTrucks.data.listTrucks?.items as Truck[]));
+        console.log(trucks);
       } else {
         throw new Error("Could not get trucks");
       }
+
+      console.log(nextToken);
+      while (nextToken !== null && nextToken !== undefined) {
+        allTrucks = (await API.graphql({
+          query: listTrucks,
+          variables: { limit: 100, nextToken },
+        })) as {
+          data: ListTrucksQuery;
+          errors: any[];
+        };
+
+        if (allTrucks.data) {
+          setNextToken(allTrucks.data.listTrucks?.nextToken);
+          trucks.push(...(allTrucks.data.listTrucks?.items as Truck[]));
+        } else {
+          throw new Error("Could not get trucks");
+        }
+      }
+
+      console.log(trucks);
+
+      setTrucks(trucks);
+      return allTrucks.data.listTrucks?.items as Truck[];
     };
 
     fetchTrucksFromApi();

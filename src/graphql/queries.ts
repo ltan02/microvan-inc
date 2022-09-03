@@ -2,18 +2,76 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const getBrands = /* GraphQL */ `
+  query GetBrands($id: ID!) {
+    getBrands(id: $id) {
+      brand
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listBrands = /* GraphQL */ `
+  query ListBrands(
+    $filter: ModelBrandsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listBrands(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        brand
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getTypes = /* GraphQL */ `
+  query GetTypes($id: ID!) {
+    getTypes(id: $id) {
+      type
+      id
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listTypes = /* GraphQL */ `
+  query ListTypes(
+    $filter: ModelTypesFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTypes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        type
+        id
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const getTruck = /* GraphQL */ `
   query GetTruck($id: ID!) {
     getTruck(id: $id) {
       id
-      name
-      chassisNumber
-      lotId
-      images
+      unicode
+      model
+      prefix
+      chassis
+      engineNumber
       description
+      brand
+      type
+      images
       startingPrice
-      categories
       sold
+      bidder
       createdAt
       updatedAt
     }
@@ -36,14 +94,18 @@ export const listTrucks = /* GraphQL */ `
     ) {
       items {
         id
-        name
-        chassisNumber
-        lotId
-        images
+        unicode
+        model
+        prefix
+        chassis
+        engineNumber
         description
+        brand
+        type
+        images
         startingPrice
-        categories
         sold
+        bidder
         createdAt
         updatedAt
       }
@@ -58,14 +120,18 @@ export const getBid = /* GraphQL */ `
       truckId
       truck {
         id
-        name
-        chassisNumber
-        lotId
-        images
+        unicode
+        model
+        prefix
+        chassis
+        engineNumber
         description
+        brand
+        type
+        images
         startingPrice
-        categories
         sold
+        bidder
         createdAt
         updatedAt
       }
@@ -96,14 +162,18 @@ export const listBids = /* GraphQL */ `
         truckId
         truck {
           id
-          name
-          chassisNumber
-          lotId
-          images
+          unicode
+          model
+          prefix
+          chassis
+          engineNumber
           description
+          brand
+          type
+          images
           startingPrice
-          categories
           sold
+          bidder
           createdAt
           updatedAt
         }

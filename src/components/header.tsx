@@ -1,7 +1,16 @@
 import { useRouter } from "next/router";
+import { useUser } from "../context/AuthContext";
 
 function header() {
+  const { user } = useUser();
   const router = useRouter();
+  const currentPath = router.pathname;
+
+  const isAdmin =
+    user?.getSignInUserSession()?.getAccessToken().payload[
+      "cognito:groups"
+    ][0] === "Admins";
+
   return (
     <div
       className={
@@ -20,17 +29,25 @@ function header() {
           </div>
           <div className="flex items-center">
             <ul className="flex space-x-3 pl-4 md:space-x-8 md:pl-7 lg:space-x-12 lg:pl-10">
-              <li
-                className="headerLink"
-                onClick={() => {
-                  router.push("/gallery");
-                  window.location.reload();
-                }}
-              >
-                Gallery
-              </li>
+              {currentPath !== "/" && (
+                <li
+                  className="headerLink"
+                  onClick={() => {
+                    router.push("/gallery");
+                  }}
+                >
+                  Gallery
+                </li>
+              )}
               <li className="headerLink">Schedule</li>
-              <li className="headerLink">Saved</li>
+              {isAdmin && currentPath !== "/" && (
+                <li
+                  className="headerLink"
+                  onClick={() => router.push("/admin")}
+                >
+                  Admin
+                </li>
+              )}
             </ul>
           </div>
         </div>
