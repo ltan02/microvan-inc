@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { listTrucks, getTruck } from "../../graphql/queries";
-import { API, withSSRContext } from "aws-amplify";
+import { API, withSSRContext, Storage } from "aws-amplify";
 import { GetTruckQuery, ListTrucksQuery, Truck } from "../../API";
 import Header from "../../components/header";
 import Image from "next/image";
@@ -19,7 +19,28 @@ interface Props {
 }
 
 export default function TruckPost({ truck }: Props) {
+  const [truckImage, setTruckImage] = useState<string | null>(null);
   console.log("GOT TRUCK:", truck);
+
+  useEffect(() => {
+    async function getImageFromStorage() {
+      try {
+        Storage.list("") // for listing ALL files without prefix, pass '' instead
+          .then((result: any) => console.log(result))
+          .catch((err: any) => console.log(err));
+
+        const signedURL = await Storage.get(
+          "image", //"Freightliner_M2_106_6x4_2014_(14240376744).jpg",
+        ); //get key from Storage.list
+        console.log("SIGNED URL:", signedURL);
+        setTruckImage(signedURL);
+      } catch (err) {
+        console.error("No image found");
+      }
+    }
+    getImageFromStorage();
+  }, []);
+
   return (
     <div className="flex flex-col bg-white min-h-full">
       <Header />
@@ -33,12 +54,14 @@ export default function TruckPost({ truck }: Props) {
                   <div className="hover:cursor-pointer w-full max-h-[1000px] min-h-[200px]">
                     <div className="items-center justify-center flex flex-col h-full min-h-[inherit] w-full relative">
                       <div className="h-full w-[600px] flex items-center justify-center max-h-full max-w-full overflow-hidden relative">
-                        <Image
-                          objectFit="contain"
-                          src=""
-                          className="w-auto h-auto max-w-full max-h-full"
-                          layout="fill"
-                        />
+                        {truckImage && (
+                          <Image
+                            objectFit="contain"
+                            src={truckImage}
+                            className="w-auto h-auto max-w-full max-h-full"
+                            layout="fill"
+                          />
+                        )}
                       </div>
                     </div>
                   </div>
@@ -58,7 +81,7 @@ export default function TruckPost({ truck }: Props) {
                             <div className="p-[30px] rounded-b-[10px]">
                               <section className="flex items-center text-[#8a939b]">
                                 <div className="m-0 p-0 flex items-center font-normal text-[16px] text-[#04111d]">
-                                  This is a test description
+                                  {truck.description}
                                 </div>
                               </section>
                             </div>
@@ -84,7 +107,7 @@ export default function TruckPost({ truck }: Props) {
                                 >
                                   <div className="m-[5px] w-[150px] rounded-[6px] border-[1px] border-solid border-[#15b1e5] p-[10px] text-center bg-[#15b1e50f]">
                                     <div className="text-[#353840] text-[15px] font-medium leading-[30px] overflow-auto">
-                                      Test Category
+                                      {truck.brand}
                                     </div>
                                   </div>
                                 </a>
@@ -94,7 +117,7 @@ export default function TruckPost({ truck }: Props) {
                                 >
                                   <div className="m-[5px] w-[150px] rounded-[6px] border-[1px] border-solid border-[#15b1e5] p-[10px] text-center bg-[#15b1e50f]">
                                     <div className="text-[#353840] text-[15px] font-medium leading-[30px] overflow-auto">
-                                      Test Category 2
+                                      {truck.type}
                                     </div>
                                   </div>
                                 </a>
@@ -115,7 +138,7 @@ export default function TruckPost({ truck }: Props) {
                             href="/gallery"
                             className="text-[16px] overflow-hidden text-ellipsis whitespace-nowrap text-[#2081e2] no-underline"
                           >
-                            Brand
+                            {truck.brand}
                           </a>
                         </div>
                       </div>
@@ -140,7 +163,7 @@ export default function TruckPost({ truck }: Props) {
                       </div>
                     </div>
                     <div className="w-[710px] text-[30px] font-semibold max-w-full m-0 overflow-hidden text-ellipsis leading-[normal]">
-                      Truck Name
+                      {truck.type}
                     </div>
                   </section>
                   <div className="m-[20px]">
@@ -173,7 +196,9 @@ export default function TruckPost({ truck }: Props) {
                               ₱
                             </div>
                             <div className="ml-[0.3em] w-full overflow-hidden text-ellipsis whitespace-nowrap">
-                              10,000
+                              {truck.startingPrice
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                             </div>
                           </div>
                         </div>

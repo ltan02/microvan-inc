@@ -36,12 +36,13 @@ export default function Dropzone() {
 
           data.forEach(async (row: any[]) => {
             if (typeof row[1] === "number") {
+              console.log(row);
               const brand = row[6];
               const type = row[7];
               if (
                 brand !== undefined &&
                 brand !== "" &&
-                !brands.includes(brand.replace(/^\s+|\s+$/gm, ""))
+                !brands.includes(brand)
               ) {
                 brands.push(brand);
               }

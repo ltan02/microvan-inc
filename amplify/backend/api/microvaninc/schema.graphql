@@ -1,5 +1,3 @@
-# Could add @key for different ways to filter through data
-
 type Truck
   @model
   @auth(

@@ -7,6 +7,7 @@ function header() {
   const currentPath = router.pathname;
 
   const isAdmin =
+    user?.getSignInUserSession()?.getAccessToken().payload["cognito:groups"] &&
     user?.getSignInUserSession()?.getAccessToken().payload[
       "cognito:groups"
     ][0] === "Admins";

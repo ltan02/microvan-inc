@@ -6,13 +6,13 @@
     "defaultAuthType": {
       "mode": "API_KEY",
       "expirationTime": 364,
-      "apiKeyExpirationDate": "2023-08-26T19:26:08.421Z",
-      "keyDescription": "API Key"
+      "apiKeyExpirationDate": "2023-09-03T06:31:18.233Z",
+      "keyDescription": "api key"
     },
     "additionalAuthTypes": [
       {
         "mode": "AMAZON_COGNITO_USER_POOLS",
-        "cognitoUserPoolId": "authmicrovaninc87a9b916"
+        "cognitoUserPoolId": "authmicrovaninc0e671ce0"
       }
     ]
   }

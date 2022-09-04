@@ -16,7 +16,7 @@ export default function gallery({}: Props) {
   // Make a request to the GraphQL API
   useEffect(() => {
     const fetchTrucksFromApi = async (): Promise<Truck[]> => {
-      const trucks: Truck[] = [];
+      const currentTrucks: Truck[] = [];
       let allTrucks = (await API.graphql({
         query: listTrucks,
         variables: { limit: 100 },
@@ -29,7 +29,7 @@ export default function gallery({}: Props) {
         console.log(JSON.stringify(allTrucks.data));
         setNextToken(allTrucks.data.listTrucks?.nextToken);
         console.log(allTrucks.data.listTrucks?.nextToken);
-        trucks.push(...(allTrucks.data.listTrucks?.items as Truck[]));
+        currentTrucks.push(...(allTrucks.data.listTrucks?.items as Truck[]));
         console.log(trucks);
       } else {
         throw new Error("Could not get trucks");
@@ -47,15 +47,15 @@ export default function gallery({}: Props) {
 
         if (allTrucks.data) {
           setNextToken(allTrucks.data.listTrucks?.nextToken);
-          trucks.push(...(allTrucks.data.listTrucks?.items as Truck[]));
+          currentTrucks.push(...(allTrucks.data.listTrucks?.items as Truck[]));
         } else {
           throw new Error("Could not get trucks");
         }
       }
 
-      console.log(trucks);
+      console.log(currentTrucks);
 
-      setTrucks(trucks);
+      setTrucks(currentTrucks);
       return allTrucks.data.listTrucks?.items as Truck[];
     };
 
