@@ -39,17 +39,17 @@ function truckPreview({ truck }: Props) {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col w-full h-[150px] gap-y-[12px] px-[16px] py-[12px]">
+            <div className="flex flex-col w-full h-[115px] gap-y-[12px] px-[16px] py-[12px]">
               <div className="w-4/5">
                 <div className="flex">
-                  <div className="font-semibold text-[12px] w-full overflow-wrap whitespace-wrap text-ellipsis">
+                  <div className="font-semibold text-[12px] w-full overflow-hidden whitespace-nowrap text-ellipsis">
                     {`${truck.brand} - ${truck.type}`}
                   </div>
                 </div>
                 {truck.description && (
                   <div className="h-[18px] max-w-full flex items-center mb-2">
                     <div className="font-normal text-[12px] w-full overflow-hidden whitespace-nowrap text-ellipsis">
-                      {truck.description}
+                      {truck.description.trim()}
                     </div>
                   </div>
                 )}

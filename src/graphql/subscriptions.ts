@@ -2,129 +2,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateBrands = /* GraphQL */ `
-  subscription OnCreateBrands($filter: ModelSubscriptionBrandsFilterInput) {
-    onCreateBrands(filter: $filter) {
-      brand
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateBrands = /* GraphQL */ `
-  subscription OnUpdateBrands($filter: ModelSubscriptionBrandsFilterInput) {
-    onUpdateBrands(filter: $filter) {
-      brand
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteBrands = /* GraphQL */ `
-  subscription OnDeleteBrands($filter: ModelSubscriptionBrandsFilterInput) {
-    onDeleteBrands(filter: $filter) {
-      brand
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateTypes = /* GraphQL */ `
-  subscription OnCreateTypes($filter: ModelSubscriptionTypesFilterInput) {
-    onCreateTypes(filter: $filter) {
-      type
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateTypes = /* GraphQL */ `
-  subscription OnUpdateTypes($filter: ModelSubscriptionTypesFilterInput) {
-    onUpdateTypes(filter: $filter) {
-      type
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteTypes = /* GraphQL */ `
-  subscription OnDeleteTypes($filter: ModelSubscriptionTypesFilterInput) {
-    onDeleteTypes(filter: $filter) {
-      type
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateTruck = /* GraphQL */ `
-  subscription OnCreateTruck {
-    onCreateTruck {
-      id
-      unicode
-      model
-      prefix
-      chassis
-      engineNumber
-      description
-      brand
-      type
-      images
-      startingPrice
-      sold
-      bidder
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateTruck = /* GraphQL */ `
-  subscription OnUpdateTruck {
-    onUpdateTruck {
-      id
-      unicode
-      model
-      prefix
-      chassis
-      engineNumber
-      description
-      brand
-      type
-      images
-      startingPrice
-      sold
-      bidder
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteTruck = /* GraphQL */ `
-  subscription OnDeleteTruck {
-    onDeleteTruck {
-      id
-      unicode
-      model
-      prefix
-      chassis
-      engineNumber
-      description
-      brand
-      type
-      images
-      startingPrice
-      sold
-      bidder
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreateBid = /* GraphQL */ `
   subscription OnCreateBid {
     onCreateBid {
@@ -138,8 +15,18 @@ export const onCreateBid = /* GraphQL */ `
         chassis
         engineNumber
         description
-        brand
-        type
+        brand {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        type {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         images
         startingPrice
         sold
@@ -167,8 +54,18 @@ export const onUpdateBid = /* GraphQL */ `
         chassis
         engineNumber
         description
-        brand
-        type
+        brand {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        type {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         images
         startingPrice
         sold
@@ -196,8 +93,18 @@ export const onDeleteBid = /* GraphQL */ `
         chassis
         engineNumber
         description
-        brand
-        type
+        brand {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        type {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         images
         startingPrice
         sold
@@ -207,6 +114,159 @@ export const onDeleteBid = /* GraphQL */ `
       }
       currentPrice
       bidder
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateTruck = /* GraphQL */ `
+  subscription OnCreateTruck {
+    onCreateTruck {
+      id
+      unicode
+      model
+      prefix
+      chassis
+      engineNumber
+      description
+      brand {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      images
+      startingPrice
+      sold
+      bidder
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateTruck = /* GraphQL */ `
+  subscription OnUpdateTruck {
+    onUpdateTruck {
+      id
+      unicode
+      model
+      prefix
+      chassis
+      engineNumber
+      description
+      brand {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      images
+      startingPrice
+      sold
+      bidder
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteTruck = /* GraphQL */ `
+  subscription OnDeleteTruck {
+    onDeleteTruck {
+      id
+      unicode
+      model
+      prefix
+      chassis
+      engineNumber
+      description
+      brand {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      images
+      startingPrice
+      sold
+      bidder
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateBrand = /* GraphQL */ `
+  subscription OnCreateBrand {
+    onCreateBrand {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateBrand = /* GraphQL */ `
+  subscription OnUpdateBrand {
+    onUpdateBrand {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteBrand = /* GraphQL */ `
+  subscription OnDeleteBrand {
+    onDeleteBrand {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateType = /* GraphQL */ `
+  subscription OnCreateType {
+    onCreateType {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateType = /* GraphQL */ `
+  subscription OnUpdateType {
+    onUpdateType {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteType = /* GraphQL */ `
+  subscription OnDeleteType {
+    onDeleteType {
+      id
+      name
       createdAt
       updatedAt
     }

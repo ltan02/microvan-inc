@@ -1,6 +1,6 @@
 {
-  "resourceName": "truckimages",
-  "policyUUID": "1d1a3272",
+  "resourceName": "s3260eea32",
+  "policyUUID": "260eea32",
   "bucketName": "microvaninc",
   "storageAccess": "authAndGuest",
   "guestAccess": [

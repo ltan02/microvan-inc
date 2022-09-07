@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { listTrucks, getTruck } from "../../graphql/queries";
-import { API, withSSRContext, Storage } from "aws-amplify";
+import { withSSRContext, Storage } from "aws-amplify";
 import { GetTruckQuery, ListTrucksQuery, Truck } from "../../API";
 import Header from "../../components/header";
 import Image from "next/image";
@@ -54,14 +54,12 @@ export default function TruckPost({ truck }: Props) {
                   <div className="hover:cursor-pointer w-full max-h-[1000px] min-h-[200px]">
                     <div className="items-center justify-center flex flex-col h-full min-h-[inherit] w-full relative">
                       <div className="h-full w-[600px] flex items-center justify-center max-h-full max-w-full overflow-hidden relative">
-                        {truckImage && (
-                          <Image
-                            objectFit="contain"
-                            src={truckImage}
-                            className="w-auto h-auto max-w-full max-h-full"
-                            layout="fill"
-                          />
-                        )}
+                        <Image
+                          objectFit="contain"
+                          src={truckImage ?? ""}
+                          className="w-auto h-auto max-w-full max-h-full"
+                          layout="fill"
+                        />
                       </div>
                     </div>
                   </div>
@@ -107,7 +105,7 @@ export default function TruckPost({ truck }: Props) {
                                 >
                                   <div className="m-[5px] w-[150px] rounded-[6px] border-[1px] border-solid border-[#15b1e5] p-[10px] text-center bg-[#15b1e50f]">
                                     <div className="text-[#353840] text-[15px] font-medium leading-[30px] overflow-auto">
-                                      {truck.brand}
+                                      {truck.brand.name}
                                     </div>
                                   </div>
                                 </a>
@@ -117,7 +115,7 @@ export default function TruckPost({ truck }: Props) {
                                 >
                                   <div className="m-[5px] w-[150px] rounded-[6px] border-[1px] border-solid border-[#15b1e5] p-[10px] text-center bg-[#15b1e50f]">
                                     <div className="text-[#353840] text-[15px] font-medium leading-[30px] overflow-auto">
-                                      {truck.type}
+                                      {truck.type.name}
                                     </div>
                                   </div>
                                 </a>
@@ -138,7 +136,7 @@ export default function TruckPost({ truck }: Props) {
                             href="/gallery"
                             className="text-[16px] overflow-hidden text-ellipsis whitespace-nowrap text-[#2081e2] no-underline"
                           >
-                            {truck.brand}
+                            {truck.brand.name}
                           </a>
                         </div>
                       </div>
@@ -163,7 +161,7 @@ export default function TruckPost({ truck }: Props) {
                       </div>
                     </div>
                     <div className="w-[710px] text-[30px] font-semibold max-w-full m-0 overflow-hidden text-ellipsis leading-[normal]">
-                      {truck.type}
+                      {truck.type.name}
                     </div>
                   </section>
                   <div className="m-[20px]">

@@ -2,84 +2,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createBrands = /* GraphQL */ `
-  mutation CreateBrands(
-    $input: CreateBrandsInput!
-    $condition: ModelBrandsConditionInput
-  ) {
-    createBrands(input: $input, condition: $condition) {
-      brand
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateBrands = /* GraphQL */ `
-  mutation UpdateBrands(
-    $input: UpdateBrandsInput!
-    $condition: ModelBrandsConditionInput
-  ) {
-    updateBrands(input: $input, condition: $condition) {
-      brand
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteBrands = /* GraphQL */ `
-  mutation DeleteBrands(
-    $input: DeleteBrandsInput!
-    $condition: ModelBrandsConditionInput
-  ) {
-    deleteBrands(input: $input, condition: $condition) {
-      brand
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createTypes = /* GraphQL */ `
-  mutation CreateTypes(
-    $input: CreateTypesInput!
-    $condition: ModelTypesConditionInput
-  ) {
-    createTypes(input: $input, condition: $condition) {
-      type
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateTypes = /* GraphQL */ `
-  mutation UpdateTypes(
-    $input: UpdateTypesInput!
-    $condition: ModelTypesConditionInput
-  ) {
-    updateTypes(input: $input, condition: $condition) {
-      type
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteTypes = /* GraphQL */ `
-  mutation DeleteTypes(
-    $input: DeleteTypesInput!
-    $condition: ModelTypesConditionInput
-  ) {
-    deleteTypes(input: $input, condition: $condition) {
-      type
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const createTruck = /* GraphQL */ `
   mutation CreateTruck(
     $input: CreateTruckInput!
@@ -93,8 +15,18 @@ export const createTruck = /* GraphQL */ `
       chassis
       engineNumber
       description
-      brand
-      type
+      brand {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       images
       startingPrice
       sold
@@ -117,8 +49,18 @@ export const updateTruck = /* GraphQL */ `
       chassis
       engineNumber
       description
-      brand
-      type
+      brand {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       images
       startingPrice
       sold
@@ -141,12 +83,100 @@ export const deleteTruck = /* GraphQL */ `
       chassis
       engineNumber
       description
-      brand
-      type
+      brand {
+        id
+        name
+        createdAt
+        updatedAt
+      }
+      type {
+        id
+        name
+        createdAt
+        updatedAt
+      }
       images
       startingPrice
       sold
       bidder
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createBrand = /* GraphQL */ `
+  mutation CreateBrand(
+    $input: CreateBrandInput!
+    $condition: ModelBrandConditionInput
+  ) {
+    createBrand(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateBrand = /* GraphQL */ `
+  mutation UpdateBrand(
+    $input: UpdateBrandInput!
+    $condition: ModelBrandConditionInput
+  ) {
+    updateBrand(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteBrand = /* GraphQL */ `
+  mutation DeleteBrand(
+    $input: DeleteBrandInput!
+    $condition: ModelBrandConditionInput
+  ) {
+    deleteBrand(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createType = /* GraphQL */ `
+  mutation CreateType(
+    $input: CreateTypeInput!
+    $condition: ModelTypeConditionInput
+  ) {
+    createType(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateType = /* GraphQL */ `
+  mutation UpdateType(
+    $input: UpdateTypeInput!
+    $condition: ModelTypeConditionInput
+  ) {
+    updateType(input: $input, condition: $condition) {
+      id
+      name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteType = /* GraphQL */ `
+  mutation DeleteType(
+    $input: DeleteTypeInput!
+    $condition: ModelTypeConditionInput
+  ) {
+    deleteType(input: $input, condition: $condition) {
+      id
+      name
       createdAt
       updatedAt
     }
@@ -168,8 +198,18 @@ export const createBid = /* GraphQL */ `
         chassis
         engineNumber
         description
-        brand
-        type
+        brand {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        type {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         images
         startingPrice
         sold
@@ -200,8 +240,18 @@ export const updateBid = /* GraphQL */ `
         chassis
         engineNumber
         description
-        brand
-        type
+        brand {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        type {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         images
         startingPrice
         sold
@@ -232,8 +282,18 @@ export const deleteBid = /* GraphQL */ `
         chassis
         engineNumber
         description
-        brand
-        type
+        brand {
+          id
+          name
+          createdAt
+          updatedAt
+        }
+        type {
+          id
+          name
+          createdAt
+          updatedAt
+        }
         images
         startingPrice
         sold

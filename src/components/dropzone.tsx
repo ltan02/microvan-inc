@@ -1,8 +1,13 @@
 import API, { GRAPHQL_AUTH_MODE } from "@aws-amplify/api";
 import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { CreateTruckInput, CreateTruckMutation } from "../API";
-import { createTruck } from "../graphql/mutations";
+import {
+  CreateBrandMutation,
+  CreateTruckInput,
+  CreateTruckMutation,
+  CreateTypeMutation,
+} from "../API";
+import { createBrand, createTruck, createType } from "../graphql/mutations";
 
 const XLSX = require("xlsx");
 
@@ -45,37 +50,63 @@ export default function Dropzone() {
                 !brands.includes(brand)
               ) {
                 brands.push(brand);
+                try {
+                  const createNewBrands = (await API.graphql({
+                    query: createBrand,
+                    variables: { input: { brand: brand } },
+                    authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
+                  })) as { data: CreateBrandMutation };
+                  console.log(
+                    "New brands created successfully:",
+                    createNewBrands,
+                  );
+                } catch (err) {
+                  console.log("Error creating new brands:", err);
+                }
               }
               if (type !== undefined && type !== "" && !types.includes(type)) {
                 types.push(type);
+                try {
+                  const createNewTypes = (await API.graphql({
+                    query: createType,
+                    variables: { input: { type: type } },
+                    authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
+                  })) as { data: CreateTypeMutation };
+                  console.log(
+                    "New types created successfully:",
+                    createNewTypes,
+                  );
+                } catch (err) {
+                  console.log("Error creating new types:", err);
+                }
               }
 
-              try {
-                const createNewTruckInput: CreateTruckInput = {
-                  unicode: row[1],
-                  ...(!isEquipment && { model: row[2] }),
-                  ...(isEquipment && { prefix: row[2] }),
-                  chassis: row[3],
-                  engineNumber: row[4],
-                  description: row[5],
-                  brand: brand,
-                  type: type,
-                  images: [],
-                  startingPrice: row[8],
-                  sold: false,
-                  bidder: "",
-                };
+              // try {
+              //   const createNewTruckInput: CreateTruckInput = {
+              //     unicode: row[1],
+              //     ...(!isEquipment && { model: row[2] }),
+              //     ...(isEquipment && { prefix: row[2] }),
+              //     chassis: row[3],
+              //     engineNumber: row[4],
+              //     description: row[5],
+              //     brand: brand,
+              //     type: type,
+              //     images: [],
+              //     startingPrice: row[8],
+              //     sold: false,
+              //     bidder: "",
+              //   };
 
-                const createNewPost = (await API.graphql({
-                  query: createTruck,
-                  variables: { input: createNewTruckInput },
-                  authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
-                })) as { data: CreateTruckMutation };
+              //   const createNewTruck = (await API.graphql({
+              //     query: createTruck,
+              //     variables: { input: createNewTruckInput },
+              //     authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
+              //   })) as { data: CreateTruckMutation };
 
-                console.log("New post created successfully:", createNewPost);
-              } catch (err) {
-                console.error("Error uploading vehicle");
-              }
+              //   console.log("New post created successfully:", createNewTruck);
+              // } catch (err) {
+              //   console.error("Error uploading vehicle");
+              // }
             }
           });
         });

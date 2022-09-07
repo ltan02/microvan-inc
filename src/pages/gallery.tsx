@@ -13,6 +13,7 @@ export default function gallery({}: Props) {
   const { user } = useUser();
   const [trucks, setTrucks] = useState<Truck[]>([]);
   const [nextToken, setNextToken] = useState<string | null | undefined>(null);
+  const [showFilterOptions, setShowFilterOptions] = useState(true);
   // Make a request to the GraphQL API
   useEffect(() => {
     const fetchTrucksFromApi = async (): Promise<Truck[]> => {
@@ -72,8 +73,14 @@ export default function gallery({}: Props) {
       <main className="flex flex-col grow shrink basis-0">
         <div className="flex w-screen flex-col mt-0 h-full">
           <div className="px-[32px] mx-auto w-screen">
-            <FilterBar />
-            <GallerySection trucks={trucks} />
+            <FilterBar
+              showFilterOptions={showFilterOptions}
+              setShowFilterOptions={setShowFilterOptions}
+            />
+            <GallerySection
+              trucks={trucks}
+              showFilterOptions={showFilterOptions}
+            />
           </div>
         </div>
       </main>

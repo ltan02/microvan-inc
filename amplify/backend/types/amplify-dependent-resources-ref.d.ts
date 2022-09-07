@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
     "auth": {
-        "microvaninc0e671ce0": {
+        "microvaninc7a70734f": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
@@ -10,17 +10,17 @@ export type AmplifyDependentResourcesAttributes = {
             "AppClientID": "string"
         }
     },
+    "storage": {
+        "s3260eea32": {
+            "BucketName": "string",
+            "Region": "string"
+        }
+    },
     "api": {
         "microvaninc": {
             "GraphQLAPIKeyOutput": "string",
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
-        }
-    },
-    "storage": {
-        "truckimages": {
-            "BucketName": "string",
-            "Region": "string"
         }
     }
 }

@@ -1,7 +1,10 @@
 import { useRouter } from "next/router";
 import { useUser } from "../context/AuthContext";
+import PersonIcon from "@mui/icons-material/Person";
+import { useState } from "react";
 
 function header() {
+  const [hoverProfile, setHoverProfile] = useState(false);
   const { user } = useUser();
   const router = useRouter();
   const currentPath = router.pathname;
@@ -11,6 +14,8 @@ function header() {
     user?.getSignInUserSession()?.getAccessToken().payload[
       "cognito:groups"
     ][0] === "Admins";
+
+  console.log(hoverProfile);
 
   return (
     <div
@@ -26,6 +31,9 @@ function header() {
               width={60}
               height={60}
               className="cursor-pointer object-contain"
+              onClick={() =>
+                user ? router.push("/gallery") : router.push("/")
+              }
             />
           </div>
           <div className="flex items-center">
@@ -57,6 +65,8 @@ function header() {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-10 w-10 hover:cursor-pointer fill-[#535664] hover:fill-black"
+              onMouseOver={() => setHoverProfile(true)}
+              onMouseLeave={() => setHoverProfile(false)}
               viewBox="0 0 20 20"
             >
               <path
@@ -66,6 +76,28 @@ function header() {
               />
             </svg>
           </div>
+          {hoverProfile && (
+            <div className="z-[9999] absolute inset-y-0 inset-x-[auto] m-0 profileDropDown">
+              <div className="max-w-[350px] duration-300 -top-[10px] rounded-t-none rounded-b-[10px] relative text-[14px] font-semibold outline-0 break-words">
+                <div className="duration-300 p-0 relative z-[1]">
+                  <div>
+                    <ul className="bg-white border-none rounded-[10px] m-0 pl-0 list-none">
+                      <li className="border-[1px] border-solid border-[#e5e8eb] rounded-t-[10px] w-full list-none">
+                        <div className="rounded-none border-none overflow-hidden w-full font-semibold text-[#353840] text-left flex no-underline p-[16px] hover:cursor-pointer">
+                          <div className="self-center order-2 mr-[16px] flex-shrink-0 overflow-hidden items-center justify-center flex-col flex w-[24px] h-[24px]">
+                            <PersonIcon className="text-[24px]" />
+                          </div>
+                          <div className="self-stretch flex-grow flex-shrink basis-auto flex-col justify-center order-3 overflow-hidden items-start text-[16px] flex mr-[16px] font-semibold text-[#04111d]">
+                            Profile
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
     </div>

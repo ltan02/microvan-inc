@@ -14,20 +14,38 @@ type Truck
   chassis: String!
   engineNumber: String!
   description: String!
-  brand: String!
-  type: String!
+  brand: Brand!
+  type: Type!
   images: [String]
   startingPrice: Int!
   sold: Boolean!
   bidder: String!
 }
 
-type Brands @model {
-  brand: [String!]!
+type Brand
+  @model
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admins"] }
+      { allow: groups, groups: ["Buyers"], operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id: ID! @primaryKey
+  name: String!
 }
 
-type Types @model {
-  type: [String!]!
+type Type
+  @model
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admins"] }
+      { allow: groups, groups: ["Buyers"], operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id: ID! @primaryKey
+  name: String!
 }
 
 type Bid

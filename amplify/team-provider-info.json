@@ -1,19 +1,19 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-microvaninc-dev-232006-authRole",
-      "UnauthRoleArn": "arn:aws:iam::578474506089:role/amplify-microvaninc-dev-232006-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::578474506089:role/amplify-microvaninc-dev-232006-authRole",
+      "AuthRoleName": "amplify-microvaninc-dev-203020-authRole",
+      "UnauthRoleArn": "arn:aws:iam::578474506089:role/amplify-microvaninc-dev-203020-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::578474506089:role/amplify-microvaninc-dev-203020-authRole",
       "Region": "ap-southeast-1",
-      "DeploymentBucketName": "amplify-microvaninc-dev-232006-deployment",
-      "UnauthRoleName": "amplify-microvaninc-dev-232006-unauthRole",
-      "StackName": "amplify-microvaninc-dev-232006",
-      "StackId": "arn:aws:cloudformation:ap-southeast-1:578474506089:stack/amplify-microvaninc-dev-232006/a06c9ab0-2c19-11ed-bbb5-0ac23f4cd04c",
-      "AmplifyAppId": "d350tmnnbxyvy4"
+      "DeploymentBucketName": "amplify-microvaninc-dev-203020-deployment",
+      "UnauthRoleName": "amplify-microvaninc-dev-203020-unauthRole",
+      "StackName": "amplify-microvaninc-dev-203020",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:578474506089:stack/amplify-microvaninc-dev-203020/695d45b0-2e5d-11ed-b1d8-0afd3d2645ba",
+      "AmplifyAppId": "d38y7ixynffbew"
     },
     "categories": {
       "auth": {
-        "microvaninc0e671ce0": {},
+        "microvaninc7a70734f": {},
         "true": {}
       }
     }
