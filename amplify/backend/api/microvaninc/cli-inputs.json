@@ -4,15 +4,15 @@
     "apiName": "microvaninc",
     "serviceName": "AppSync",
     "defaultAuthType": {
-      "mode": "AMAZON_COGNITO_USER_POOLS",
-      "cognitoUserPoolId": "authmicrovaninc7a70734f"
+      "mode": "API_KEY",
+      "expirationTime": 364,
+      "apiKeyExpirationDate": "2023-09-08T20:26:38.758Z",
+      "keyDescription": "api key"
     },
     "additionalAuthTypes": [
       {
-        "mode": "API_KEY",
-        "expirationTime": 364,
-        "apiKeyExpirationDate": "2023-09-06T03:34:39.158Z",
-        "keyDescription": ""
+        "mode": "AMAZON_COGNITO_USER_POOLS",
+        "cognitoUserPoolId": "authmicrovaninc1125650a"
       }
     ]
   }

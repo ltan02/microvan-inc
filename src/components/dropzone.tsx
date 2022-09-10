@@ -53,7 +53,7 @@ export default function Dropzone() {
                 try {
                   const createNewBrands = (await API.graphql({
                     query: createBrand,
-                    variables: { input: { brand: brand } },
+                    variables: { input: { name: brand } },
                     authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
                   })) as { data: CreateBrandMutation };
                   console.log(
@@ -69,7 +69,7 @@ export default function Dropzone() {
                 try {
                   const createNewTypes = (await API.graphql({
                     query: createType,
-                    variables: { input: { type: type } },
+                    variables: { input: { name: type } },
                     authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
                   })) as { data: CreateTypeMutation };
                   console.log(
@@ -81,32 +81,32 @@ export default function Dropzone() {
                 }
               }
 
-              // try {
-              //   const createNewTruckInput: CreateTruckInput = {
-              //     unicode: row[1],
-              //     ...(!isEquipment && { model: row[2] }),
-              //     ...(isEquipment && { prefix: row[2] }),
-              //     chassis: row[3],
-              //     engineNumber: row[4],
-              //     description: row[5],
-              //     brand: brand,
-              //     type: type,
-              //     images: [],
-              //     startingPrice: row[8],
-              //     sold: false,
-              //     bidder: "",
-              //   };
+              try {
+                const createNewTruckInput: CreateTruckInput = {
+                  unicode: row[1],
+                  ...(!isEquipment && { model: row[2] }),
+                  ...(isEquipment && { prefix: row[2] }),
+                  chassis: row[3],
+                  engineNumber: row[4],
+                  description: row[5],
+                  brand: brand,
+                  type: type,
+                  images: [],
+                  startingPrice: row[8],
+                  sold: false,
+                  bidder: "",
+                };
 
-              //   const createNewTruck = (await API.graphql({
-              //     query: createTruck,
-              //     variables: { input: createNewTruckInput },
-              //     authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
-              //   })) as { data: CreateTruckMutation };
+                const createNewTruck = (await API.graphql({
+                  query: createTruck,
+                  variables: { input: createNewTruckInput },
+                  authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
+                })) as { data: CreateTruckMutation };
 
-              //   console.log("New post created successfully:", createNewTruck);
-              // } catch (err) {
-              //   console.error("Error uploading vehicle");
-              // }
+                console.log("New post created successfully:", createNewTruck);
+              } catch (err) {
+                console.error("Error uploading vehicle");
+              }
             }
           });
         });

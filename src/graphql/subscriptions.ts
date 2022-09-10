@@ -2,123 +2,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateBid = /* GraphQL */ `
-  subscription OnCreateBid {
-    onCreateBid {
-      id
-      truckId
-      truck {
-        id
-        unicode
-        model
-        prefix
-        chassis
-        engineNumber
-        description
-        brand {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        type {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        images
-        startingPrice
-        sold
-        bidder
-        createdAt
-        updatedAt
-      }
-      currentPrice
-      bidder
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateBid = /* GraphQL */ `
-  subscription OnUpdateBid {
-    onUpdateBid {
-      id
-      truckId
-      truck {
-        id
-        unicode
-        model
-        prefix
-        chassis
-        engineNumber
-        description
-        brand {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        type {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        images
-        startingPrice
-        sold
-        bidder
-        createdAt
-        updatedAt
-      }
-      currentPrice
-      bidder
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteBid = /* GraphQL */ `
-  subscription OnDeleteBid {
-    onDeleteBid {
-      id
-      truckId
-      truck {
-        id
-        unicode
-        model
-        prefix
-        chassis
-        engineNumber
-        description
-        brand {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        type {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        images
-        startingPrice
-        sold
-        bidder
-        createdAt
-        updatedAt
-      }
-      currentPrice
-      bidder
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreateTruck = /* GraphQL */ `
   subscription OnCreateTruck {
     onCreateTruck {
@@ -129,18 +12,8 @@ export const onCreateTruck = /* GraphQL */ `
       chassis
       engineNumber
       description
-      brand {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
+      brand
+      type
       images
       startingPrice
       sold
@@ -160,18 +33,8 @@ export const onUpdateTruck = /* GraphQL */ `
       chassis
       engineNumber
       description
-      brand {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
+      brand
+      type
       images
       startingPrice
       sold
@@ -191,18 +54,8 @@ export const onDeleteTruck = /* GraphQL */ `
       chassis
       engineNumber
       description
-      brand {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
+      brand
+      type
       images
       startingPrice
       sold
@@ -267,6 +120,93 @@ export const onDeleteType = /* GraphQL */ `
     onDeleteType {
       id
       name
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateBid = /* GraphQL */ `
+  subscription OnCreateBid {
+    onCreateBid {
+      id
+      truckId
+      truck {
+        id
+        unicode
+        model
+        prefix
+        chassis
+        engineNumber
+        description
+        brand
+        type
+        images
+        startingPrice
+        sold
+        bidder
+        createdAt
+        updatedAt
+      }
+      currentPrice
+      bidder
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateBid = /* GraphQL */ `
+  subscription OnUpdateBid {
+    onUpdateBid {
+      id
+      truckId
+      truck {
+        id
+        unicode
+        model
+        prefix
+        chassis
+        engineNumber
+        description
+        brand
+        type
+        images
+        startingPrice
+        sold
+        bidder
+        createdAt
+        updatedAt
+      }
+      currentPrice
+      bidder
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteBid = /* GraphQL */ `
+  subscription OnDeleteBid {
+    onDeleteBid {
+      id
+      truckId
+      truck {
+        id
+        unicode
+        model
+        prefix
+        chassis
+        engineNumber
+        description
+        brand
+        type
+        images
+        startingPrice
+        sold
+        bidder
+        createdAt
+        updatedAt
+      }
+      currentPrice
+      bidder
       createdAt
       updatedAt
     }

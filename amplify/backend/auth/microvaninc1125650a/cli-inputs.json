@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "microvaninc7a70734f_identitypool_7a70734f",
-    "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "microv7a70734f",
-    "userPoolName": "microvaninc7a70734f_userpool_7a70734f",
+    "identityPoolName": "microvaninc1125650a_identitypool_1125650a",
+    "allowUnauthenticatedIdentities": false,
+    "resourceNameTruncated": "microv1125650a",
+    "userPoolName": "microvaninc1125650a_userpool_1125650a",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,10 +31,10 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "microv7a70734f_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "microv1125650a_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "7a70734f",
-    "resourceName": "microvaninc7a70734f",
+    "sharedId": "1125650a",
+    "resourceName": "microvaninc1125650a",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "default",
     "usernameAttributes": [
@@ -44,20 +44,6 @@
     "userPoolGroupList": [],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
-    "useEnabledMfas": true,
-    "authRoleArn": {
-      "Fn::GetAtt": [
-        "AuthRole",
-        "Arn"
-      ]
-    },
-    "unauthRoleArn": {
-      "Fn::GetAtt": [
-        "UnauthRole",
-        "Arn"
-      ]
-    },
-    "breakCircularDependency": true,
-    "dependsOn": []
+    "useEnabledMfas": true
   }
 }

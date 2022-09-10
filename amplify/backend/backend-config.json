@@ -1,6 +1,6 @@
 {
   "auth": {
-    "microvaninc7a70734f": {
+    "microvaninc1125650a": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -27,13 +27,6 @@
       }
     }
   },
-  "storage": {
-    "s3260eea32": {
-      "service": "S3",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": []
-    }
-  },
   "api": {
     "microvaninc": {
       "service": "AppSync",
@@ -41,7 +34,7 @@
       "dependsOn": [
         {
           "category": "auth",
-          "resourceName": "microvaninc7a70734f",
+          "resourceName": "microvaninc1125650a",
           "attributes": [
             "UserPoolId"
           ]
@@ -50,18 +43,18 @@
       "output": {
         "authConfig": {
           "defaultAuthentication": {
-            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-            "userPoolConfig": {
-              "userPoolId": "authmicrovaninc7a70734f"
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 364,
+              "apiKeyExpirationDate": "2023-09-08T20:26:38.758Z",
+              "description": "api key"
             }
           },
           "additionalAuthenticationProviders": [
             {
-              "authenticationType": "API_KEY",
-              "apiKeyConfig": {
-                "apiKeyExpirationDays": 364,
-                "apiKeyExpirationDate": "2023-09-06T03:34:39.158Z",
-                "description": ""
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authmicrovaninc1125650a"
               }
             }
           ]

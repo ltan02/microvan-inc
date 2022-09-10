@@ -105,7 +105,7 @@ export default function TruckPost({ truck }: Props) {
                                 >
                                   <div className="m-[5px] w-[150px] rounded-[6px] border-[1px] border-solid border-[#15b1e5] p-[10px] text-center bg-[#15b1e50f]">
                                     <div className="text-[#353840] text-[15px] font-medium leading-[30px] overflow-auto">
-                                      {truck.brand.name}
+                                      {truck.brand}
                                     </div>
                                   </div>
                                 </a>
@@ -115,7 +115,7 @@ export default function TruckPost({ truck }: Props) {
                                 >
                                   <div className="m-[5px] w-[150px] rounded-[6px] border-[1px] border-solid border-[#15b1e5] p-[10px] text-center bg-[#15b1e50f]">
                                     <div className="text-[#353840] text-[15px] font-medium leading-[30px] overflow-auto">
-                                      {truck.type.name}
+                                      {truck.type}
                                     </div>
                                   </div>
                                 </a>
@@ -136,7 +136,7 @@ export default function TruckPost({ truck }: Props) {
                             href="/gallery"
                             className="text-[16px] overflow-hidden text-ellipsis whitespace-nowrap text-[#2081e2] no-underline"
                           >
-                            {truck.brand.name}
+                            {truck.brand}
                           </a>
                         </div>
                       </div>
@@ -161,7 +161,7 @@ export default function TruckPost({ truck }: Props) {
                       </div>
                     </div>
                     <div className="w-[710px] text-[30px] font-semibold max-w-full m-0 overflow-hidden text-ellipsis leading-[normal]">
-                      {truck.type.name}
+                      {truck.type}
                     </div>
                   </section>
                   <div className="m-[20px]">

@@ -2,87 +2,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getBid = /* GraphQL */ `
-  query GetBid($id: ID!) {
-    getBid(id: $id) {
-      id
-      truckId
-      truck {
-        id
-        unicode
-        model
-        prefix
-        chassis
-        engineNumber
-        description
-        brand {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        type {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        images
-        startingPrice
-        sold
-        bidder
-        createdAt
-        updatedAt
-      }
-      currentPrice
-      bidder
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listBids = /* GraphQL */ `
-  query ListBids(
-    $id: ID
-    $filter: ModelBidFilterInput
-    $limit: Int
-    $nextToken: String
-    $sortDirection: ModelSortDirection
-  ) {
-    listBids(
-      id: $id
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
-      items {
-        id
-        truckId
-        truck {
-          id
-          unicode
-          model
-          prefix
-          chassis
-          engineNumber
-          description
-          images
-          startingPrice
-          sold
-          bidder
-          createdAt
-          updatedAt
-        }
-        currentPrice
-        bidder
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
 export const getTruck = /* GraphQL */ `
   query GetTruck($id: ID!) {
     getTruck(id: $id) {
@@ -93,18 +12,8 @@ export const getTruck = /* GraphQL */ `
       chassis
       engineNumber
       description
-      brand {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
+      brand
+      type
       images
       startingPrice
       sold
@@ -137,18 +46,8 @@ export const listTrucks = /* GraphQL */ `
         chassis
         engineNumber
         description
-        brand {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        type {
-          id
-          name
-          createdAt
-          updatedAt
-        }
+        brand
+        type
         images
         startingPrice
         sold
@@ -223,6 +122,79 @@ export const listTypes = /* GraphQL */ `
       items {
         id
         name
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getBid = /* GraphQL */ `
+  query GetBid($id: ID!) {
+    getBid(id: $id) {
+      id
+      truckId
+      truck {
+        id
+        unicode
+        model
+        prefix
+        chassis
+        engineNumber
+        description
+        brand
+        type
+        images
+        startingPrice
+        sold
+        bidder
+        createdAt
+        updatedAt
+      }
+      currentPrice
+      bidder
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listBids = /* GraphQL */ `
+  query ListBids(
+    $id: ID
+    $filter: ModelBidFilterInput
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+  ) {
+    listBids(
+      id: $id
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
+      items {
+        id
+        truckId
+        truck {
+          id
+          unicode
+          model
+          prefix
+          chassis
+          engineNumber
+          description
+          brand
+          type
+          images
+          startingPrice
+          sold
+          bidder
+          createdAt
+          updatedAt
+        }
+        currentPrice
+        bidder
         createdAt
         updatedAt
       }

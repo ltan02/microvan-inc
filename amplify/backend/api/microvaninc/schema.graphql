@@ -11,11 +11,11 @@ type Truck
   unicode: Int!
   model: String
   prefix: String
-  chassis: String!
-  engineNumber: String!
+  chassis: String
+  engineNumber: String
   description: String!
-  brand: Brand!
-  type: Type!
+  brand: String!
+  type: String!
   images: [String]
   startingPrice: Int!
   sold: Boolean!

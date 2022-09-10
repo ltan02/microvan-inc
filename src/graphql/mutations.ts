@@ -15,18 +15,8 @@ export const createTruck = /* GraphQL */ `
       chassis
       engineNumber
       description
-      brand {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
+      brand
+      type
       images
       startingPrice
       sold
@@ -49,18 +39,8 @@ export const updateTruck = /* GraphQL */ `
       chassis
       engineNumber
       description
-      brand {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
+      brand
+      type
       images
       startingPrice
       sold
@@ -83,18 +63,8 @@ export const deleteTruck = /* GraphQL */ `
       chassis
       engineNumber
       description
-      brand {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      type {
-        id
-        name
-        createdAt
-        updatedAt
-      }
+      brand
+      type
       images
       startingPrice
       sold
@@ -198,18 +168,8 @@ export const createBid = /* GraphQL */ `
         chassis
         engineNumber
         description
-        brand {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        type {
-          id
-          name
-          createdAt
-          updatedAt
-        }
+        brand
+        type
         images
         startingPrice
         sold
@@ -240,18 +200,8 @@ export const updateBid = /* GraphQL */ `
         chassis
         engineNumber
         description
-        brand {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        type {
-          id
-          name
-          createdAt
-          updatedAt
-        }
+        brand
+        type
         images
         startingPrice
         sold
@@ -282,18 +232,8 @@ export const deleteBid = /* GraphQL */ `
         chassis
         engineNumber
         description
-        brand {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        type {
-          id
-          name
-          createdAt
-          updatedAt
-        }
+        brand
+        type
         images
         startingPrice
         sold
