@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { listTrucks, getTruck } from "../../graphql/queries";
-import { withSSRContext, Storage } from "aws-amplify";
-import { GetTruckQuery, ListTrucksQuery, Truck } from "../../API";
+import { withSSRContext, Storage, API } from "aws-amplify";
+import {
+  GetTruckQuery,
+  ListTrucksQuery,
+  Truck,
+  UpdateTruckMutation,
+} from "../../API";
 import Header from "../../components/header";
 import Image from "next/image";
 import SubjectIcon from "@mui/icons-material/Subject";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import LabelIcon from "@mui/icons-material/Label";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import ShareIcon from "@mui/icons-material/Share";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ScheduleIcon from "@mui/icons-material/Schedule";
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import { useRouter } from "next/router";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css";
+import { useUser } from "../../context/AuthContext";
+import { updateTruck } from "../../graphql/mutations";
 
 interface Props {
   truck: Truck;
@@ -20,26 +27,89 @@ interface Props {
 
 export default function TruckPost({ truck }: Props) {
   const [truckImage, setTruckImage] = useState<string | null>(null);
+  const [bidValue, setBidValue] = useState<number>(truck.startingPrice + 5000);
+  const [makeBid, setMakeBid] = useState<boolean>(false);
+  const { user, setUser } = useUser();
+  const router = useRouter();
   console.log("GOT TRUCK:", truck);
 
-  useEffect(() => {
-    async function getImageFromStorage() {
-      try {
-        Storage.list("") // for listing ALL files without prefix, pass '' instead
-          .then((result: any) => console.log(result))
-          .catch((err: any) => console.log(err));
+  const isHighestBidder = truck.bidder === user?.getUsername();
+  console.log(isHighestBidder);
 
-        const signedURL = await Storage.get(
-          "image", //"Freightliner_M2_106_6x4_2014_(14240376744).jpg",
-        ); //get key from Storage.list
-        console.log("SIGNED URL:", signedURL);
-        setTruckImage(signedURL);
-      } catch (err) {
-        console.error("No image found");
-      }
+  // useEffect(() => {
+  //   async function getImageFromStorage() {
+  //     try {
+  //       Storage.list("") // for listing ALL files without prefix, pass '' instead
+  //         .then((result: any) => console.log(result))
+  //         .catch((err: any) => console.log(err));
+
+  //       const signedURL = await Storage.get(
+  //         "image", //"Freightliner_M2_106_6x4_2014_(14240376744).jpg",
+  //       ); //get key from Storage.list
+  //       console.log("SIGNED URL:", signedURL);
+  //       setTruckImage(signedURL);
+  //     } catch (err) {
+  //       console.error("No image found");
+  //     }
+  //   }
+  //   getImageFromStorage();
+  // }, []);
+
+  // useEffect(() => {
+  //   router.reload();
+  // }, [truck.startingPrice]);
+
+  const updateBid = async () => {
+    const truckDetails = {
+      id: truck.id,
+      unicode: truck.unicode,
+      ...(truck.model && { model: truck.model }),
+      ...(truck.prefix && { prefix: truck.prefix }),
+      ...(truck.chassis && { chassis: truck.chassis }),
+      ...(truck.engineNumber && { engineNumber: truck.engineNumber }),
+      description: truck.description,
+      brand: truck.brand,
+      type: truck.type,
+      images: truck.images,
+      startingPrice: bidValue,
+      sold: truck.sold,
+      bidder: user?.getUsername(),
+    };
+
+    const updatedTruck = (await API.graphql({
+      query: updateTruck,
+      variables: { input: truckDetails },
+      authMode: "AMAZON_COGNITO_USER_POOLS",
+    })) as {
+      data: UpdateTruckMutation;
+      errors: any[];
+    };
+
+    if (updatedTruck.errors) {
+      console.error("Error updating truck", updatedTruck.errors);
+    } else {
+      router.reload();
     }
-    getImageFromStorage();
-  }, []);
+  };
+
+  const confirmBid = () => {
+    confirmAlert({
+      title: `${truck.brand} - ${truck.type}`,
+      message: `Do you confirm your bid of PHP ${bidValue
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`,
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => updateBid(),
+        },
+        {
+          label: "No",
+          onClick: () => {},
+        },
+      ],
+    });
+  };
 
   return (
     <div className="flex flex-col bg-white min-h-full">
@@ -72,7 +142,6 @@ export default function TruckPost({ truck }: Props) {
                         >
                           <SubjectIcon className="mr-[10px] text-[24px]" />
                           <span>Description</span>
-                          <ExpandLessIcon className="ml-auto" />
                         </button>
                         <div className="border-l-0 border-r-0 rounded-none border-t-[1px] border-t-solid border-solid border-t-[#e5e8eb] text-[#353840] bg-[#fbfdff]">
                           <div className="h-[initial] max-h-[200px] overflow-auto">
@@ -94,7 +163,6 @@ export default function TruckPost({ truck }: Props) {
                           >
                             <LabelIcon className="mr-[10px] text-[24px]" />
                             <span>Categories</span>
-                            <ExpandLessIcon className="ml-auto" />
                           </button>
                           <div className="border-l-0 border-r-0 rounded-none border-t-[1px] border-t-solid border-solid border-t-[#e5e8eb] text-[#353840] bg-[#fbfdff]">
                             <div className="h-[initial] max-h-[200px] overflow-auto">
@@ -142,19 +210,12 @@ export default function TruckPost({ truck }: Props) {
                       </div>
                       <div className="max-w-fit">
                         <div className="w-fit flex">
-                          <button className="truckPostButton rounded-l-[10px] rounded-r-none">
-                            <div className="flex mb-0 ml-0 mr-0 max-h-[22px] pointer-events-none">
+                          <button className="truckPostButton rounded-[10px]">
+                            <div
+                              className="flex mb-0 ml-0 mr-0 max-h-[22px] pointer-events-none"
+                              onClick={() => router.reload()}
+                            >
                               <RefreshIcon className="text-[22px]" />
-                            </div>
-                          </button>
-                          <button className="truckPostButton -ml-[2px] rounded-none ">
-                            <div className="flex mb-0 ml-0 mr-0 max-h-[22px] pointer-events-none">
-                              <ShareIcon className="text-[22px]" />
-                            </div>
-                          </button>
-                          <button className="truckPostButton -ml-[2px] rounded-r-[10px] rounded-l-none">
-                            <div className="flex mb-0 ml-0 mr-0 max-h-[22px] pointer-events-none">
-                              <MoreVertIcon className="text-[22px]" />
                             </div>
                           </button>
                         </div>
@@ -203,7 +264,16 @@ export default function TruckPost({ truck }: Props) {
                         <div className="flex max-w-[420px]">
                           <div className="w-full contents">
                             <div className="inline-flex w-1/2">
-                              <button className="w-full inline-flex flex-row items-center justify-center rounded-[12px] text-[16px] font-semibold leading-[22px] tracking-[0.01em] py-[17px] px-[24px] bg-[#2081e2] text-white border-[2px] border-solid border-[#2081e2]">
+                              <button
+                                onClick={
+                                  !isHighestBidder ? confirmBid : undefined
+                                }
+                                className={`w-full inline-flex flex-row items-center justify-center rounded-[12px] text-[16px] font-semibold leading-[22px] tracking-[0.01em] py-[17px] px-[24px] text-white border-[2px] border-solid border-[#2081e2] ${
+                                  !isHighestBidder
+                                    ? "bg-[#2081e24b]"
+                                    : "bg-[#2081e2]"
+                                }`}
+                              >
                                 <div className="flex mb-0 ml-0 mr-[12px] max-h-[22px] pointer-events-none">
                                   <LocalOfferIcon className="text-[22px]" />
                                 </div>

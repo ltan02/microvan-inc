@@ -20,7 +20,7 @@
 
 @layer components {
   .headerLink {
-    @apply font-semibold text-[16px] text-[#535664] hover:text-black hover:cursor-pointer transition duration-[.2s];
+    @apply font-semibold text-[16px] text-[#04111d] hover:text-[#535664] hover:cursor-pointer transition duration-[.2s];
   }
 
   .filterBar {

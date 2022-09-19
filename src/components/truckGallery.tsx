@@ -79,6 +79,15 @@ function truckGallery({
         </div>
         <div className="pb-[16px]">
           <div className="p-0 m-0 w-full">
+            {/* <div
+              role="grid"
+              tabIndex={0}
+              className="relative w-full max-w-full h-[12892px] max-h-[12892px]"
+            >
+              {trucks.map((truck: Truck) => {
+                return <TruckPreview key={truck.id} truck={truck} />;
+              })}
+            </div> */}
             <Grid
               container
               rowSpacing={3}
