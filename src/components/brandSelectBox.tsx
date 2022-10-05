@@ -40,8 +40,10 @@ export default function filterSelectBox({
                       (currItem: Brand) => currItem !== brand,
                     ),
                   );
+                  console.log("SELECTED BRANDS", selectedBrands);
                 } else {
                   setSelectedBrands([...selectedBrands, brand]);
+                  console.log("SELECTED BRANDS", selectedBrands);
                 }
               }}
             />

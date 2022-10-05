@@ -27,13 +27,13 @@ interface Props {
 
 export default function TruckPost({ truck }: Props) {
   const [truckImage, setTruckImage] = useState<string | null>(null);
-  const [bidValue, setBidValue] = useState<number>(truck.startingPrice + 5000);
+  const [bidValue, setBidValue] = useState<number>(truck?.startingPrice + 5000);
   const [makeBid, setMakeBid] = useState<boolean>(false);
   const { user, setUser } = useUser();
   const router = useRouter();
   console.log("GOT TRUCK:", truck);
 
-  const isHighestBidder = truck.bidder === user?.getUsername();
+  const isHighestBidder = truck?.bidder === user?.getUsername();
   console.log(isHighestBidder);
 
   // useEffect(() => {
@@ -148,7 +148,7 @@ export default function TruckPost({ truck }: Props) {
                             <div className="p-[30px] rounded-b-[10px]">
                               <section className="flex items-center text-[#8a939b]">
                                 <div className="m-0 p-0 flex items-center font-normal text-[16px] text-[#04111d]">
-                                  {truck.description}
+                                  {truck?.description}
                                 </div>
                               </section>
                             </div>
@@ -173,7 +173,7 @@ export default function TruckPost({ truck }: Props) {
                                 >
                                   <div className="m-[5px] w-[150px] rounded-[6px] border-[1px] border-solid border-[#15b1e5] p-[10px] text-center bg-[#15b1e50f]">
                                     <div className="text-[#353840] text-[15px] font-medium leading-[30px] overflow-auto">
-                                      {truck.brand}
+                                      {truck?.brand}
                                     </div>
                                   </div>
                                 </a>
@@ -183,7 +183,7 @@ export default function TruckPost({ truck }: Props) {
                                 >
                                   <div className="m-[5px] w-[150px] rounded-[6px] border-[1px] border-solid border-[#15b1e5] p-[10px] text-center bg-[#15b1e50f]">
                                     <div className="text-[#353840] text-[15px] font-medium leading-[30px] overflow-auto">
-                                      {truck.type}
+                                      {truck?.type}
                                     </div>
                                   </div>
                                 </a>
@@ -204,7 +204,7 @@ export default function TruckPost({ truck }: Props) {
                             href="/gallery"
                             className="text-[16px] overflow-hidden text-ellipsis whitespace-nowrap text-[#2081e2] no-underline"
                           >
-                            {truck.brand}
+                            {truck?.brand}
                           </a>
                         </div>
                       </div>
@@ -222,7 +222,7 @@ export default function TruckPost({ truck }: Props) {
                       </div>
                     </div>
                     <div className="w-[710px] text-[30px] font-semibold max-w-full m-0 overflow-hidden text-ellipsis leading-[normal]">
-                      {truck.type}
+                      {truck?.type}
                     </div>
                   </section>
                   <div className="m-[20px]">
@@ -255,7 +255,7 @@ export default function TruckPost({ truck }: Props) {
                               ₱
                             </div>
                             <div className="ml-[0.3em] w-full overflow-hidden text-ellipsis whitespace-nowrap">
-                              {truck.startingPrice
+                              {truck?.startingPrice
                                 .toString()
                                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                             </div>
@@ -268,10 +268,10 @@ export default function TruckPost({ truck }: Props) {
                                 onClick={
                                   !isHighestBidder ? confirmBid : undefined
                                 }
-                                className={`w-full inline-flex flex-row items-center justify-center rounded-[12px] text-[16px] font-semibold leading-[22px] tracking-[0.01em] py-[17px] px-[24px] text-white border-[2px] border-solid border-[#2081e2] ${
+                                className={`w-full inline-flex flex-row items-center justify-center rounded-[12px] text-[16px] font-semibold leading-[22px] tracking-[0.01em] py-[17px] px-[24px] text-white border-[2px] border-solid ${
                                   !isHighestBidder
-                                    ? "bg-[#2081e24b]"
-                                    : "bg-[#2081e2]"
+                                    ? "bg-[#2081e2] border-[#2081e2]"
+                                    : "bg-[#2081e24b] border-[#2081e24b] hover:cursor-default"
                                 }`}
                               >
                                 <div className="flex mb-0 ml-0 mr-[12px] max-h-[22px] pointer-events-none">

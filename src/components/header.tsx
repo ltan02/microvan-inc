@@ -5,7 +5,7 @@ import { useState } from "react";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
 function header() {
-  const [hoverProfile, setHoverProfile] = useState(true);
+  const [hoverProfile, setHoverProfile] = useState(false);
   const { user } = useUser();
   const router = useRouter();
   const currentPath = router.pathname;

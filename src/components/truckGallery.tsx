@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import { Brand, Truck, Type } from "../API";
 import TruckPreview from "./truckPreview";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import SelectedBrandFilters from "./selectedBrandFilters";
 import SelectedTypeFilters from "./selectedTypeFilters";
 
@@ -78,21 +78,12 @@ function truckGallery({
           </div>
         </div>
         <div className="pb-[16px]">
-          <div className="p-0 m-0 w-full">
-            {/* <div
-              role="grid"
-              tabIndex={0}
-              className="relative w-full max-w-full h-[12892px] max-h-[12892px]"
-            >
-              {trucks.map((truck: Truck) => {
-                return <TruckPreview key={truck.id} truck={truck} />;
-              })}
-            </div> */}
+          <div className="p-0 m-0 w-full max-w-full">
             <Grid
               container
               rowSpacing={3}
               columnSpacing={{ sm: 2, md: 3, lg: 5 }}
-              className="relative w-full max-w-full"
+              className="w-full max-w-full"
             >
               {trucks.map((truck: Truck) => {
                 return <TruckPreview key={truck.id} truck={truck} />;

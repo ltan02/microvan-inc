@@ -14,7 +14,7 @@ export default function selectedFilters({
   setSelectedBrands,
 }: Props) {
   return (
-    <li className="flex list-none">
+    <li className="flex list-none" key={selectedBrand.id}>
       <div className="flex py-[12px] px-[20px] items-center rounded-[8px] bg-[#e5e8eb80]">
         <div className="font-semibold text-[16px] text-[#04111d]">
           {selectedBrand.name}

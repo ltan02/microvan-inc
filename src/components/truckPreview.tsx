@@ -14,7 +14,7 @@ function truckPreview({ truck }: Props) {
   const [truckImage, setTruckImage] = useState<string | undefined>(undefined);
 
   return (
-    <Grid item xs={5} sm={5} md={5} lg={3} xl={3}>
+    <Grid item xs={6} sm={6} md={4} lg={3} xl={3}>
       <div>
         <article
           className="truckIconBox"
