@@ -13,6 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <React.Fragment>
       <Head>
         <title>Microvan Incorporated</title>
+        <link rel="logo" href="../../public/logo.ico" />
         <style>
           @import
           url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap');
