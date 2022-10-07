@@ -1,6 +1,6 @@
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { Dispatch, SetStateAction } from "react";
+import SearchIcon from "@mui/icons-material/Search";
 
 interface Props {
   showFilterOptions: boolean;
@@ -21,7 +21,27 @@ function filterBar({ showFilterOptions, setShowFilterOptions }: Props) {
                 <FilterListIcon />
               </button>
             </div>
-            <div className="w-[240px] ml-auto shrink-0">
+            <div className="w-full">
+              <div className="!hidden m-0 p-0" />
+              <div className="flex h-full w-full items-center">
+                <div className="w-full">
+                  <div className="m-0 p-0">
+                    <div className="w-full justify-center flex-col flex">
+                      <div className="flex h-[45px] justify-center">
+                        <div className="mr-[32px] leading-[26px] p-[8px] searchBarTransition hover:cursor-text flex items-center rounded-[12px] border-[2px] border-solid border-[#e5e8eb] text-[#04111d] w-full h-[48px] text-[16px]">
+                          <SearchIcon className="justify-center flex flex-col text-[#8a939b]" />
+                          <input
+                            className="hover:cursor-text text-ellipsis bg-transparent border-none outline-none w-full m-0"
+                            placeholder="Search vehicles"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* <div className="w-[240px] ml-auto shrink-0">
               <span className="w-full font-semibold text-[14px] text-[#04111d]">
                 <div className="w-full !hidden m-0 p-0" />
                 <div className="m-0 p-0">
@@ -41,7 +61,7 @@ function filterBar({ showFilterOptions, setShowFilterOptions }: Props) {
                   </div>
                 </div>
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -11,12 +11,7 @@ import { createBrand, createTruck, createType } from "../graphql/mutations";
 
 const XLSX = require("xlsx");
 
-interface TruckInformation {
-  "#": number;
-  BRAKES: number;
-}
-
-export default function Dropzone() {
+export default function FileDropzone() {
   const [file, setFile] = useState<File>();
 
   console.log("The current file is:", file);

@@ -13,6 +13,20 @@ function truckPreview({ truck }: Props) {
   const router = useRouter();
   const [truckImage, setTruckImage] = useState<string | undefined>(undefined);
 
+  useEffect(() => {
+    async function getImageFromStorage() {
+      try {
+        const signedURL = await Storage.get("truck.jpeg"); // get key from Storage.list
+        console.log("Found Image:", signedURL);
+        setTruckImage(signedURL);
+      } catch (error) {
+        console.log("No image found.");
+      }
+    }
+
+    getImageFromStorage();
+  }, []);
+
   return (
     <Grid item xs={6} sm={6} md={4} lg={3} xl={3}>
       <div>

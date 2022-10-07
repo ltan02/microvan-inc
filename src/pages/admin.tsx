@@ -1,6 +1,7 @@
 import React from "react";
-import Dropzone from "../components/dropzone";
+import FileDropzone from "../components/fileDropzone";
 import Header from "../components/header";
+import ImageDropzone from "../components/imageDropzone";
 
 type Props = {};
 
@@ -9,7 +10,8 @@ export default function admin({}: Props) {
     <div>
       <Header />
 
-      <Dropzone />
+      <FileDropzone />
+      <ImageDropzone />
     </div>
   );
 }

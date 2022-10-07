@@ -36,24 +36,19 @@ export default function TruckPost({ truck }: Props) {
   const isHighestBidder = truck?.bidder === user?.getUsername();
   console.log(isHighestBidder);
 
-  // useEffect(() => {
-  //   async function getImageFromStorage() {
-  //     try {
-  //       Storage.list("") // for listing ALL files without prefix, pass '' instead
-  //         .then((result: any) => console.log(result))
-  //         .catch((err: any) => console.log(err));
+  useEffect(() => {
+    async function getImageFromStorage() {
+      try {
+        const signedURL = await Storage.get("truck.jpeg"); // get key from Storage.list
+        console.log("Found Image:", signedURL);
+        setTruckImage(signedURL);
+      } catch (error) {
+        console.log("No image found.");
+      }
+    }
 
-  //       const signedURL = await Storage.get(
-  //         "image", //"Freightliner_M2_106_6x4_2014_(14240376744).jpg",
-  //       ); //get key from Storage.list
-  //       console.log("SIGNED URL:", signedURL);
-  //       setTruckImage(signedURL);
-  //     } catch (err) {
-  //       console.error("No image found");
-  //     }
-  //   }
-  //   getImageFromStorage();
-  // }, []);
+    getImageFromStorage();
+  }, []);
 
   // useEffect(() => {
   //   router.reload();
@@ -124,12 +119,14 @@ export default function TruckPost({ truck }: Props) {
                   <div className="hover:cursor-pointer w-full max-h-[1000px] min-h-[200px]">
                     <div className="items-center justify-center flex flex-col h-full min-h-[inherit] w-full relative">
                       <div className="h-full w-[600px] flex items-center justify-center max-h-full max-w-full overflow-hidden relative">
-                        <Image
-                          objectFit="contain"
-                          src={truckImage ?? ""}
-                          className="w-auto h-auto max-w-full max-h-full"
-                          layout="fill"
-                        />
+                        {truckImage && (
+                          <Image
+                            objectFit="contain"
+                            src={truckImage ?? ""}
+                            className="w-auto h-auto max-w-full max-h-full"
+                            layout="fill"
+                          />
+                        )}
                       </div>
                     </div>
                   </div>

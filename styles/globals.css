@@ -99,4 +99,9 @@
     min-width: 220px;
     transition-property: transform, visibility, opacity;
   }
+
+  .searchBarTransition {
+    transition: background-color 0.2s cubic-bezier(0.05, 0, 0.2, 1) 0s,
+      border-color 0.2s cubic-bezier(0.05, 0, 0.2, 1) 0s;
+  }
 }
